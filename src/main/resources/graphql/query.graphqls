@@ -1,0 +1,18 @@
+directive @NotBlank(message : String! = "The field %s is required") on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION
+
+directive @Pattern(regexp : String! =".*", message : String = "graphql.validation.Pattern.message") on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION
+
+directive @DateTimeFormatter(message : String! = "Invalid format", format : String = "yyyy/MM/dd") on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION
+
+type Query {
+
+     directivesTutorial ( stringArgument  : String! @NotBlank
+
+                          patternArgument: String! @Pattern(regexp: "^[0-9]*$")
+
+                          dateArgument : String! @DateTimeFormatter(message : "The field %s has an invalid format", format : "yyyy-MM-dd")
+
+                         ) : String
+
+}
+
